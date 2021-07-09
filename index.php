@@ -1,6 +1,8 @@
 <?php
 require_once "SimpleAdditiveWeighting.php";
 
+SimpleAdditiveWeighting::rejectWeightIfMoreThanOne(true);
+
 // C1
 SimpleAdditiveWeighting::addData([
     0.5, 0.8, 1, 0.2, 1
@@ -28,6 +30,8 @@ SimpleAdditiveWeighting::addData([
 
 SimpleAdditiveWeighting::normalize();
 SimpleAdditiveWeighting::calculate();
+
+var_dump(SimpleAdditiveWeighting::normalizationResult());
 
 var_dump(SimpleAdditiveWeighting::result());
 

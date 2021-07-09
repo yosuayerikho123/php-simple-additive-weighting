@@ -1,10 +1,14 @@
-#PHP Simple Additive Weighting
+# PHP Simple Additive Weighting
 This is just a simple additive weighting created with php
 
-###Examples
+### Examples
 Add some data you want
 ```php
 require_once "SimpleAdditiveWeighting.php";
+
+// set to TRUE if you don't want the weight more than 1
+// it will throw an error if the weight is more than 1
+SimpleAdditiveWeighting::rejectWeightIfMoreThanOne(true);
 
 // add some data
 SimpleAdditiveWeighting::addData([
@@ -49,6 +53,12 @@ var_dump($result);
 // }
 ```
 
+If you want to get normalization result (after it normalize), you can do with this
+```php
+SimpleAdditiveWeighting::normalize();
+var_dump(SimpleAdditiveWeighting::normalizationResult());
+```
+
 You can sort ascending or descending the result
 ```php
 $ascending = SimpleAdditiveWeighting::sort(SimpleAdditiveWeighting::SORT_ASC);
@@ -76,14 +86,15 @@ var_dump($descending);
 // }
 ```
 
-
 Don't forget to clear the data if you want to calculate again
 ```php
 SimpleAdditiveWeighting::clear();
 ```
 
-####Full Code
+### Full Code
 ```php
+SimpleAdditiveWeighting::rejectWeightIfMoreThanOne(true);
+
 SimpleAdditiveWeighting::addData([
     150, 500, 200, 350
 ], 0.25, SimpleAdditiveWeighting::CRITERIA_COST);
